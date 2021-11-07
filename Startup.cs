@@ -1,6 +1,5 @@
 using EmpManagement.Data;
-using EmpManagement.IServices;
-using EmpManagement.Services;
+using EmpManagement.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,8 +26,8 @@ namespace EmpManagement
             services.AddDbContext<EmployeeDbContext>(optionsAction: opts =>
               opts.UseInMemoryDatabase(databaseName: Configuration.GetConnectionString(name: "MyDb")));
             //Configure the services
-            services.AddTransient<IEmployeeService,EmployeeService>();
-            services.AddControllers();
+            services.AddTransient<IEmployeeRepository,EmployeeRepository>();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EmpManagement", Version = "v1" });

@@ -1,16 +1,17 @@
 ﻿using EmpManagement.Data;
-using EmpManagement.Data.Model;
-using EmpManagement.IServices;
+using EmpManagement.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace EmpManagement.Services
+namespace EmpManagement.Repository
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeRepository : IEmployeeRepository
     {
         private readonly EmployeeDbContext _context;
-        public EmployeeService(EmployeeDbContext context)
+        public EmployeeRepository(EmployeeDbContext context)
         {
             _context = context;
         }
@@ -49,6 +50,26 @@ namespace EmpManagement.Services
             _context.SaveChanges();
             return _employee;
         }
+        /*    public Employee UpdateEmployeePatch(int id, JsonPatchDocument employee)
+            {
+                var _employee = await _context.Employees.FindAsync(id);
+                if(_employee!=null)
+                {
+                    employee.ApplyTo(_employee);
+                    await _context.SaveChangesAsync();
+                }
+            }*/
+        public Employee UpdateEmployeePatch(int id, JsonPatchDocument employee)
+        {
+            var _employee = _context.Employees.FirstOrDefault(e => e.Id == id);
+            if (_employee != null)
+            {
+                employee.ApplyTo(_employee);
+                 _context.SaveChanges();
+            }
+            return _employee;
+        }
+
         public bool Delete(int id)
         {
             var emp = _context.Employees.SingleOrDefault(e => e.Id == id);

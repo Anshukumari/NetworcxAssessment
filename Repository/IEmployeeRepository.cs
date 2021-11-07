@@ -1,10 +1,12 @@
-﻿using EmpManagement.Data.Model;
+﻿using EmpManagement.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace EmpManagement.IServices
+namespace EmpManagement.Repository
 {
-   public interface IEmployeeService
+   public interface IEmployeeRepository
     {
         // Method to retrieve all employee details
         IEnumerable<Employee> GetEmployees();
@@ -17,6 +19,9 @@ namespace EmpManagement.IServices
 
         // Method to edit details of an employee 
         Employee UpdateEmployee(int id, EmployeeVM employee);
+
+        // Method to update details partially 
+        Employee UpdateEmployeePatch(int id, JsonPatchDocument employee);
 
         // Method to delete a particular employee based on employee Id
         bool Delete(int id);
