@@ -1,4 +1,6 @@
 using EmpManagement.Data;
+using EmpManagement.IServices;
+using EmpManagement.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,8 +23,11 @@ namespace EmpManagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Confifure DBContext with InMemory database
             services.AddDbContext<EmployeeDbContext>(optionsAction: opts =>
               opts.UseInMemoryDatabase(databaseName: Configuration.GetConnectionString(name: "MyDb")));
+            //Configure the services
+            services.AddTransient<IEmployeeService,EmployeeService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -7,6 +7,7 @@ namespace EmpManagement.Data.Model
     {
         
         [Key]
+        [Column(TypeName = "int(100)")]
         public int Id { get; set; }
 
         [Column(TypeName="nvarchar(100)")]
