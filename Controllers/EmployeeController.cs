@@ -1,11 +1,8 @@
-﻿using EmpManagement.Context;
-using EmpManagement.Model;
-using Microsoft.AspNetCore.Http;
+﻿using EmpManagement.Data;
+using EmpManagement.Data.Model;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmpManagement.Controllers
 {

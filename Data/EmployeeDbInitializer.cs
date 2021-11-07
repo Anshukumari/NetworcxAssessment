@@ -1,14 +1,11 @@
-﻿using EmpManagement.Context;
+﻿using EmpManagement.Data.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace EmpManagement.Model
+namespace EmpManagement.Data
 {
-    public class EmpDbInitializer
+    public class EmployeeDbInitializer
     {
         public static void Seed(IApplicationBuilder applicationBuilder)
         {

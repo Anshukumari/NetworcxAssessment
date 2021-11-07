@@ -1,11 +1,7 @@
-﻿using EmpManagement.Model;
+﻿using EmpManagement.Data.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace EmpManagement.Context
+namespace EmpManagement.Data
 {
     public class EmployeeDbContext : DbContext
     {
