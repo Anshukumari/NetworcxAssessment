@@ -25,15 +25,18 @@ namespace EmpManagement
             // Confifure DBContext with InMemory database
             services.AddDbContext<EmployeeDbContext>(optionsAction: opts =>
               opts.UseInMemoryDatabase(databaseName: Configuration.GetConnectionString(name: "MyDb")));
+
+            // Confifure DBContext with SQL Server database
+            //      services.AddDbContext<BookStoreContext>(
+            //        options => options.UseSqlServer(Configuration.GetConnectionString("EmployeeDB")));
+
             //Configure the services
-            services.AddTransient<IEmployeeRepository,EmployeeRepository>();
+            services.AddSingleton<IEmployeeRepository,EmployeeRepository>();
             services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EmpManagement", Version = "v1" });
             });
-           
-          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

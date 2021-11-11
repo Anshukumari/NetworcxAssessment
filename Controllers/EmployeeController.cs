@@ -17,14 +17,14 @@ namespace EmpManagement.Controllers
             _service = service;
         }
 
-        [HttpGet("get-all-employees")]
+        [HttpGet("getAllEmployees")]
         public IActionResult GetAllEmployees()
         {
             var allEmployees = _service.GetEmployees();
             return Ok(allEmployees);
         }
 
-        [HttpGet("get-employee-byId/{id}")]
+        [HttpGet("getEmployeeById/{id}")]
         public IActionResult GetEmployeeById(int id)
         {
             var emp = _service.GetEmployeeById(id);
@@ -35,14 +35,14 @@ namespace EmpManagement.Controllers
             return Ok(emp);
         }
 
-        [HttpPost("add-new-employee")]
+        [HttpPost("addNewEmployee")]
         public IActionResult AddEmployee([FromBody] EmployeeVM employee)
         {
             _service.AddEmployee(employee);
             return Created(uri: "api/employees/" + employee.Name, employee);
         }
 
-        [HttpPut("update-employee/{id}")]
+        [HttpPut("updateEmployee/{id}")]
         public IActionResult UpdateEmployee(int id, [FromBody] EmployeeVM employee)
         {
             var emp = _service.UpdateEmployee(id, employee);
@@ -53,7 +53,7 @@ namespace EmpManagement.Controllers
             return Ok("Employee with the Id " + id + " has been Updated Successfully");
         }
 
-        [HttpPatch("update-employee-partial/{id}")]
+        [HttpPatch("updatePartially/{id}")]
         public IActionResult UpdateEmployeePatch(int id, [FromBody] JsonPatchDocument employee)
         {
             var emp = _service.UpdateEmployeePatch(id, employee);
@@ -64,7 +64,7 @@ namespace EmpManagement.Controllers
             return Ok("Employee with the Id " + id + " has been Updated Successfully");
         }
 
-        [HttpDelete("delete-employee-byId/{id}")]
+        [HttpDelete("deleteEmployeeById/{id}")]
         public IActionResult Delete(int id)
         {
             bool isDeleted = _service.Delete(id);
